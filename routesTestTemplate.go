@@ -35,7 +35,7 @@ var routesTestTemplate = &RoutesTest {
 					return req
 				}(),
 				wantStatus: http.StatusOK,
-				wantError:  "{\"version\":\"v\"}",
+				wantError:  "{\"version\":\"v",
 			},
 		}
 	
