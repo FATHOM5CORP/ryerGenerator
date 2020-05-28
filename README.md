@@ -31,7 +31,7 @@
 <h2>Getting Started</h2>
 
 <p>
-  CD into this project directory and install the ryer pattern tool to your computer. 
+  CD into this project directory and install the ryer pattern tool to your computer. It will put the tool in <strong>/usr/local/bin</strong>
 </p>
 
 ```bash
@@ -40,8 +40,7 @@ sudo ./install.sh
 ```
 
 <p>
-  Now you can make your own ryer microservices. You must supply a name and a port. For example, let's make a new project called 
-  <strong>my-new-app</strong> and expose it to port <strong>8090</strong>
+  Now you can generate your own ryer microservices. Supply a name and a port to expose the service on. For example, let's make a new project called <strong>my-new-app</strong> and expose it to port <strong>8090</strong>
 </p>
 
 ```bash
@@ -63,7 +62,29 @@ ryerGenerator -name=my-new-app -port=8090
 
 <p>
   The golang files follow the ryer pattern, and any instance of <strong>name</strong> and <strong>port</strong> are replaced 
-  accordingly. Out of the box, the code base can handle incoming requests. Run the webserver:
+  accordingly. Out of the box, the code base can handle incoming requests. Run some tests to verify:
+</p>
+
+```bash
+go test -v
+```
+
+<p>
+  You should see output similar to the following
+</p>
+
+```bash
+=== RUN   Test_handleVersion
+=== RUN   Test_handleVersion/successful_request
+ - - [27/May/2020:21:05:54 -0500] "GET /version HTTP/1.1" 200 20
+--- PASS: Test_handleVersion (0.00s)
+    --- PASS: Test_handleVersion/successful_request (0.00s)
+PASS
+ok      github.com/ryerGenerator/my-new-app    0.046s
+```
+
+<p>
+  Now run the web server:
 </p>
 
 ```bash
@@ -77,7 +98,7 @@ go run main.go routes.go
 2020/05/27 20:54:12 my-new-app service listening on localhost port 8090
 ```
 <p>
-  Make a curl request to the <strong>/version</strong> endpoint
+  In another terminal, make a curl request to the <strong>/version</strong> endpoint
 </p>
 
 ```bash
